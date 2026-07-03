@@ -90,4 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateCountdown, 1000);
     // Llamada inicial para evitar el parpadeo de "00"
     updateCountdown();
+
+    // Lógica del botón de Mute
+    const muteBtn = document.getElementById('mute-btn');
+    const bgMusicElement = document.getElementById('bg-music');
+    
+    if (muteBtn && bgMusicElement) {
+        muteBtn.addEventListener('click', () => {
+            if (bgMusicElement.muted) {
+                bgMusicElement.muted = false;
+                muteBtn.textContent = '🔊';
+            } else {
+                bgMusicElement.muted = true;
+                muteBtn.textContent = '🔇';
+            }
+        });
+    }
 });

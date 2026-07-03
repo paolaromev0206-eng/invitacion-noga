@@ -20,7 +20,7 @@
                 <div class="envelope-content">
                     <img src="imagenes/sello.png" alt="Sello NOGA" class="wax-seal-img" id="open-btn" style="cursor: pointer;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="wax-seal fallback-seal" id="open-btn-fallback" style="cursor: pointer; display: none;">Abrir</div>
-                    <h2>Defensa de Tesis</h2>
+                    <h2>Defensa de Proyecto Sociotecnológico IV</h2>
                     <p>Por favor, ingresa tu nombre y presiona el sello para abrir</p>
                     <input type="text" id="guest-name" placeholder="Tu nombre..." autocomplete="off">
                     <p id="error-msg" class="hidden">Ingresa tu nombre para continuar</p>
@@ -31,16 +31,21 @@
 
     <!-- CONTENIDO PRINCIPAL DE LA INVITACIÓN -->
     <main id="main-content" class="hidden">
+        <!-- Botón de Silenciar -->
+        <button id="mute-btn" class="mute-button" title="Pausar Música">🔊</button>
+
         <section class="hero-section">
             <h3 class="welcome-text">Bienvenido/a,</h3>
             <h1 id="display-name" class="guest-display-name">[Nombre]</h1>
-            <p class="intro-text">Estás formalmente invitado/a a presenciar la presentación del</p>
+            <p class="intro-text">Conocemos de sobra su gran experiencia y trayectoria, por lo que nos hace mucha ilusión invitarle a presenciar la presentación de nuestro Proyecto Sociotecnológico IV:</p>
             
-            <div class="system-title-box">
-                <h2 class="system-name">SISTEMA NOGA</h2>
-                <h4 class="system-subtitle">GED-RRHH</h4>
-            </div>
-
+            <div class="divider"></div>
+            
+            <h2 class="project-title">SISTEMA NOGA</h2>
+            <p class="project-subtitle">Sistema Centralizado para la Gestión Electrónica de Documentos y Expedientes en el Área Administrativa de la UPTP "Juan de Jesús Montilla"</p>
+            
+            <div class="divider"></div>
+            
             <img src="imagenes/logo-universidad.png" alt="Logo UPTP" class="logo-universidad-img" onerror="this.style.display='none'">
             <p class="university-name">Universidad Politécnica Territorial del Estado Portuguesa<br>"Juan de Jesús Montilla" (UPTP)</p>
             <p class="team-text">Desarrollado por el equipo de estudiantes de la sección 831 de PNF Informática.</p>
@@ -82,12 +87,12 @@
         </section>
 
         <!-- DESCRIPCIÓN DEL SISTEMA -->
-        <section class="system-description-section">
-            <h2 class="section-title">Sobre el Proyecto</h2>
-            <div class="card">
-                <h3>¿Qué es NOGA?</h3>
-                <p>Es una plataforma tecnológica de <strong>Gestión Electrónica de Documentos de Recursos Humanos (GED-RRHH)</strong>, diseñada para automatizar, digitalizar, controlar y auditar la administración del talento humano de nuestra universidad.</p>
-            </div>
+        <section class="details-section">
+            <h3 class="section-title">Sobre el Proyecto</h3>
+            <p class="description-text">
+                NOGA es una solución tecnológica diseñada específicamente para la Coordinación de Recursos Humanos. 
+                Optimiza, automatiza y digitaliza los procesos administrativos, garantizando mayor eficiencia y seguridad.
+            </p>
 
             <div class="tech-stack">
                 <p>Desarrollado con las tecnologías:</p>
@@ -121,7 +126,9 @@
                 </div>
             </div>
             
-            <p class="closing-text">Tu presencia es muy importante para nosotros. ¡Te esperamos!</p>
+            <div class="closing-container">
+                <p class="closing-text">Su presencia y valiosa evaluación serán de gran importancia para el éxito de esta actividad académica. ¡Esperamos contar con su distinguida participación!</p>
+            </div>
         </section>
     </main>
 
