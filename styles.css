@@ -1,0 +1,593 @@
+:root {
+    --vinotinto: #6b1427; /* Elegante y profundo */
+    --vinotinto-dark: #4a0d1a;
+    --beige: #F9F6F0; /* Fondo cálido premium */
+    --beige-dark: #E8E0D1;
+    --white: #FFFFFF;
+    --black: #1A1A1A; /* Negro suave para texto */
+    --gray: #666666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--beige);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+/* --- OVERLAY DEL SOBRE (PANTALLA DE INICIO) --- */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--beige);
+    background-image: url('imagenes/fondo-invitacion.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1s, visibility 1s;
+    backdrop-filter: blur(8px);
+}
+
+.envelope-overlay.open {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.envelope {
+    position: relative;
+    width: 90vw;
+    max-width: 380px;
+    height: 75vh;
+    max-height: 650px;
+    perspective: 1200px;
+    margin: auto;
+}
+
+.envelope-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--vinotinto);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 20px 50px 20px;
+    text-align: center;
+    transform-origin: bottom;
+    transition: transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    border-radius: 8px;
+}
+
+/* Animación cuando se abre: el cuerpo cae */
+.envelope-overlay.open .envelope-body {
+    transform: translateY(120vh) rotate(5deg);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background-color: var(--vinotinto-dark);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    z-index: 10;
+    transform-origin: top;
+    transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Animación cuando se abre: la solapa se levanta */
+.envelope-overlay.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-content {
+    color: var(--white);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-top: auto;
+}
+
+.wax-seal {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #b82343 0%, var(--vinotinto-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #e6ccb8;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.2);
+    margin-bottom: 25px;
+    border: 2px solid #a31c38;
+}
+
+.wax-seal-img {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    z-index: 30;
+    filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.6));
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.wax-seal-img:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.envelope-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    margin-top: 80px;
+}
+
+.envelope-content p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.envelope-content input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.envelope-content input::placeholder {
+    color: rgba(255,255,255,0.4);
+}
+
+.envelope-content input:focus {
+    border-bottom: 2px solid var(--beige);
+}
+
+.envelope-content button {
+    background-color: var(--beige);
+    color: var(--vinotinto);
+    border: none;
+    padding: 14px 35px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.envelope-content button:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#error-msg {
+    color: #ff9999;
+    font-size: 12px;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+/* --- CONTENIDO PRINCIPAL DE LA INVITACIÓN --- */
+#main-content {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    background: url('imagenes/fondo-invitacion.jpg') center/cover no-repeat fixed, radial-gradient(circle at top, var(--white) 0%, var(--beige) 100%);
+}
+
+#main-content.visible {
+    opacity: 1;
+}
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-text {
+    color: var(--gray);
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.guest-display-name {
+    font-size: 46px;
+    color: var(--vinotinto);
+    margin-bottom: 35px;
+    line-height: 1.1;
+    word-break: break-word;
+    max-width: 90%;
+}
+
+.intro-text {
+    font-size: 15px;
+    max-width: 450px;
+    color: var(--gray);
+    margin-bottom: 25px;
+}
+
+.system-title-box {
+    margin: 30px 0;
+    padding: 25px 50px;
+    border-top: 1px solid var(--vinotinto);
+    border-bottom: 1px solid var(--vinotinto);
+    position: relative;
+}
+
+.system-name {
+    font-size: 42px;
+    letter-spacing: 5px;
+    color: var(--black);
+    margin: 0;
+    font-weight: 700;
+}
+
+.system-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--vinotinto);
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.university-name {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 10px;
+    max-width: 400px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team-text {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 50px;
+    max-width: 350px;
+}
+
+.event-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+    background-color: var(--white);
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--gray);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--vinotinto);
+}
+
+.detail-separator {
+    color: var(--beige-dark);
+    font-size: 24px;
+    font-weight: 100;
+}
+
+/* CONTADOR REGRESIVO */
+.countdown-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.countdown-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gray);
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.countdown {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    background: var(--white);
+    padding: 15px 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+}
+
+.time-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--vinotinto);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.time-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    font-weight: 600;
+}
+
+/* DESCRIPCIÓN DEL SISTEMA */
+.system-description-section {
+    background-color: var(--white);
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 32px;
+    color: var(--vinotinto);
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--vinotinto);
+}
+
+.card {
+    background-color: var(--beige);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    margin-bottom: 40px;
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    color: var(--black);
+    font-size: 24px;
+}
+
+.card p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.8;
+}
+
+.tech-stack {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tech-stack p {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stack-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.badge {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: #faf8f5;
+    border: 1px solid var(--beige-dark);
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.benefit-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.06);
+}
+
+.benefit-icon {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.benefit-item h4 {
+    color: var(--vinotinto);
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.benefit-item p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+.closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--vinotinto);
+    text-align: center;
+    max-width: 500px;
+    margin-top: 30px;
+}
+
+/* Decoraciones abstractas/florales en CSS (opcional) */
+.decor-top, .decor-bottom {
+    width: 150px;
+    height: 150px;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 0C50 27.6142 27.6142 50 0 50C27.6142 50 50 72.3858 50 100C50 72.3858 72.3858 50 100 50C72.3858 50 50 27.6142 50 0Z" fill="%236b1427" fill-opacity="0.05"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    pointer-events: none;
+}
+
+.decor-top {
+    top: -30px;
+    left: -30px;
+}
+
+.decor-bottom {
+    bottom: -30px;
+    right: -30px;
+}
+
+.decor-img-top, .decor-img-bottom {
+    position: absolute;
+    width: 400px;
+    max-width: 80%;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+    left: 50%;
+}
+
+.decor-img-top {
+    top: -50px;
+    transform: translateX(-50%);
+}
+
+.decor-img-bottom {
+    bottom: -50px;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+/* Media Queries para Responsive */
+@media (max-width: 600px) {
+    .guest-display-name { font-size: 38px; }
+    .system-name { font-size: 32px; letter-spacing: 3px; }
+    .system-title-box { padding: 20px; }
+    
+    .event-details { 
+        flex-direction: column; 
+        gap: 15px; 
+        padding: 25px; 
+        width: 100%;
+        max-width: 300px;
+    }
+    .detail-separator { display: none; }
+    
+    .countdown { gap: 10px; }
+    .time-box { width: 60px; padding: 10px 5px; }
+    .time-value { font-size: 28px; }
+    
+    .benefits-grid { grid-template-columns: 1fr; }
+}
+
+.logo-universidad-img {
+    max-width: 220px;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+}

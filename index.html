@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación a Defensa de Tesis - Sistema NOGA</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- PANTALLA DE BIENVENIDA: EL SOBRE -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body">
+                <div class="envelope-content">
+                    <img src="imagenes/sello.png" alt="Sello NOGA" class="wax-seal-img" id="open-btn" style="cursor: pointer;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="wax-seal fallback-seal" id="open-btn-fallback" style="cursor: pointer; display: none;">Abrir</div>
+                    <h2>Defensa de Tesis</h2>
+                    <p>Por favor, ingresa tu nombre y presiona el sello para abrir</p>
+                    <input type="text" id="guest-name" placeholder="Tu nombre..." autocomplete="off">
+                    <p id="error-msg" class="hidden">Ingresa tu nombre para continuar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL DE LA INVITACIÓN -->
+    <main id="main-content" class="hidden">
+        <section class="hero-section">
+            <h3 class="welcome-text">Bienvenido/a,</h3>
+            <h1 id="display-name" class="guest-display-name">[Nombre]</h1>
+            <p class="intro-text">Estás formalmente invitado/a a presenciar la presentación del</p>
+            
+            <div class="system-title-box">
+                <h2 class="system-name">SISTEMA NOGA</h2>
+                <h4 class="system-subtitle">GED-RRHH</h4>
+            </div>
+
+            <img src="imagenes/logo-universidad.png" alt="Logo UPTP" class="logo-universidad-img" onerror="this.style.display='none'">
+            <p class="university-name">Universidad Politécnica Territorial del Estado Portuguesa<br>"Juan de Jesús Montilla" (UPTP)</p>
+            <p class="team-text">Desarrollado por el equipo de estudiantes de la sección 831 de PNF Informática.</p>
+
+            <div class="event-details">
+                <div class="detail-item">
+                    <span class="detail-label">Fecha</span>
+                    <span class="detail-value">07 de Julio, 2026</span>
+                </div>
+                <div class="detail-separator">|</div>
+                <div class="detail-item">
+                    <span class="detail-label">Hora</span>
+                    <span class="detail-value">8:00 AM</span>
+                </div>
+            </div>
+
+            <!-- CONTADOR REGRESIVO -->
+            <div class="countdown-container">
+                <p class="countdown-title">Faltan:</p>
+                <div id="countdown" class="countdown">
+                    <div class="time-box">
+                        <span id="days" class="time-value">00</span>
+                        <span class="time-label">Días</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours" class="time-value">00</span>
+                        <span class="time-label">Hrs</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes" class="time-value">00</span>
+                        <span class="time-label">Min</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds" class="time-value">00</span>
+                        <span class="time-label">Seg</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESCRIPCIÓN DEL SISTEMA -->
+        <section class="system-description-section">
+            <h2 class="section-title">Sobre el Proyecto</h2>
+            <div class="card">
+                <h3>¿Qué es NOGA?</h3>
+                <p>Es una plataforma tecnológica de <strong>Gestión Electrónica de Documentos de Recursos Humanos (GED-RRHH)</strong>, diseñada para automatizar, digitalizar, controlar y auditar la administración del talento humano de nuestra universidad.</p>
+            </div>
+
+            <div class="tech-stack">
+                <p>Desarrollado con las tecnologías:</p>
+                <div class="stack-badges">
+                    <span class="badge">PHP + Laravel</span>
+                    <span class="badge">PostgreSQL</span>
+                    <span class="badge">Mobile First</span>
+                </div>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">📁</div>
+                    <h4>Gestión Documental</h4>
+                    <p>Centro de digitalización híbrido con mapeo de archivo físico.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚙️</div>
+                    <h4>Flujos Automatizados</h4>
+                    <p>Postulación de trámites, ascensos y requerimientos en línea.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✉️</div>
+                    <h4>Correspondencia Interna</h4>
+                    <p>Emisión de circulares, memorandos y comunicados administrativos directos desde el sistema.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔒</div>
+                    <h4>Seguridad Robusta</h4>
+                    <p>Control de acceso, roles de usuario y bitácora de movimientos para garantizar la integridad de los datos.</p>
+                </div>
+            </div>
+            
+            <p class="closing-text">Tu presencia es muy importante para nosotros. ¡Te esperamos!</p>
+        </section>
+    </main>
+
+    <audio id="bg-music" loop>
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
